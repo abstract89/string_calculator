@@ -13,12 +13,20 @@ import static org.junit.Assert.*;
  * @author Horváth Dániel
  */
 public class StringCalculatorTest {
-	
+
 	private StringCalculator stringcalc = new StringCalculator();
-	
+
 	@Test
 	public void addShouldReturn13() {
 		assertEquals(13, stringcalc.add("2,4,7"));
 	}
-	
+
+	@Test
+	public void addShouldReturn6SomeSeparator() {
+		stringcalc.setSeparator(";");
+		assertEquals(6, stringcalc.add("1;3;2"));
+
+		stringcalc.setSeparator("\n");
+		assertEquals(6, stringcalc.add("4\n1\n1"));
+	}
 }
