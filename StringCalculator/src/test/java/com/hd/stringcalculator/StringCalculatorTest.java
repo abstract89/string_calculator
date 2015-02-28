@@ -28,5 +28,17 @@ public class StringCalculatorTest {
 
 		stringcalc.setSeparator("\n");
 		assertEquals(6, stringcalc.add("4\n1\n1"));
+		
+		stringcalc.setSeparator("\t");
+		assertEquals(6, stringcalc.add("3\t1\t2"));
+	}
+	
+	@Test
+	public void addShouldReturn8IfMoreCharacterSeparator() {
+		stringcalc.setSeparator("||");
+		assertEquals(8, stringcalc.add("2||4||2"));
+		
+		stringcalc.setSeparator("--");
+		assertEquals(8, stringcalc.add("4--2--2"));
 	}
 }

@@ -5,6 +5,10 @@
  */
 package com.hd.stringcalculator;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Horváth Dániel
@@ -29,10 +33,14 @@ public class StringCalculator {
 			return 0;
 		}
 
-		String[] numbersArray = numbers.split(separator);
+		if (!numbers.matches("-?[0-9]+((" + Pattern.quote(separator) + ")-?[0-9]+)*(" + Pattern.quote(separator) + ")?")) {
+			throw new IllegalArgumentException("Bad character(s) in input string: " + numbers);
+		}
+		
+		List<String> numbersList = Arrays.asList(numbers.split("(?<!" + Pattern.quote(separator) + ")" + Pattern.quote(separator)));
 
 		int sum = 0;
-		for (String stringNumber : numbersArray) {
+		for (String stringNumber : numbersList) {
 			sum += Integer.valueOf(stringNumber);
 		}
 
